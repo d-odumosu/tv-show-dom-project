@@ -1,6 +1,19 @@
 #root {
   color: red;
 }
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: #000000; */
+  /* color: aliceblue; */
+}
+
+#tvEpisode{
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 #tvEpisode{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -13,4 +26,7 @@ font-size: 15px;
     justify-content: center;
     align-content: center;
     align-items: center;
+}
+.hide{
+  display: none;
 }
