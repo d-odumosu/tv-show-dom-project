@@ -7,30 +7,33 @@
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <script defer src="script.js"></script>
+    <script defer src="episodes.js"></script>
 
   </head>
 
   <body>
-    <div id="root">
+      <div id="root">
 
-    </div>
-        <div id ="inputContainer">
-            <form action="">
-            
-
-            <label id="searchInput" for="searchInput">Search episodes
-              
-            </label>
-            <input type="text" name="" id="searchInput"  placeholder="Search...">
-                    
-            </form>
-
-            
         </div>
-    
-      <div id="tvEpisode">
+          <div id ="inputContainer">
+              <form action="">
+                <label for="searchInput">Search episodes</label>
+                    <input type="text" name="" id="searchInput"  placeholder="Search...">
+
+                
+                </form>
+
+                <div class="select-container">
+
+                    <label for="select">select episode</label>
+                    <select name="" id="select"></select>
+                </div>
+          </div>
+      
+        <div id="tvEpisode">
 
       </div>
+
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
