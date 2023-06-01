@@ -1,36 +1,49 @@
-const rootElem = document.getElementById("root");
+// const rootElem = document.getElementById("root");
 const divContainer = document.getElementById("tvEpisode");
 
-function setup() {
-  const allEpisodes = getAllEpisodes();
+async function Setup() {
+  const allEpisodes = await fetchEpisodes();
   makePageForEpisodes(allEpisodes);
   searchEpisode(allEpisodes);
   selectEpisode(allEpisodes);
 }
 
+async function fetchEpisodes() {
+  const response = await fetch("https://api.tvmaze.com/shows/82/episodes", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const json = await response.json();
+    return json;
+  } else {
+    throw new Error("Failed to fetch episodes");
+  }
+}
+
 function makePageForEpisodes(episodeList) {
-  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  divContainer.textContent = ""; // Clear previous episodes
   episodeList.forEach((episode) => {
     const episodeDiv = document.createElement("div");
     episodeDiv.classList.add("episodeCard");
     episodeDiv.innerHTML = `
-      <h2>${episode.name}
-      S${episode.season.toString().padStart(2, "0")}E${episode.number
+      <h2>${episode.name} S${episode.season
       .toString()
-      .padStart(2, "0")} </h2>
-        <img src = "${episode.image.medium}">
-        <span>${episode.summary}</span>
-      `;
+      .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}</h2>
+      <img src="${episode.image.medium}">
+      <span>${episode.summary}</span>
+    `;
     divContainer.appendChild(episodeDiv);
   });
 }
 
-//   // Adding Search level 200
 function searchEpisode(episodes) {
   let searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase();
-    divContainer.textContent = "";
     let searchedEpisode = episodes.filter((episode) => {
       return (
         episode.name.toLowerCase().includes(value) ||
@@ -40,10 +53,11 @@ function searchEpisode(episodes) {
     makePageForEpisodes(searchedEpisode);
   });
 }
-// Adding level 300
 
 function selectEpisode(episodes) {
   const select = document.getElementById("select");
+  select.innerHTML = ""; // Clear previous options
+
   const defaultOption = document.createElement("option");
   defaultOption.innerText = "Select an episode";
   select.appendChild(defaultOption);
@@ -61,17 +75,17 @@ function selectEpisode(episodes) {
 
   select.addEventListener("change", (e) => {
     let value = e.target.value;
-    divContainer.textContent = "";
     let filteredEpisode = episodes.filter((episode) => {
-      if (episode.name.includes(value) || episode.summary.includes(value)) {
-        return episode;
-      } else if (value === defaultOption.innerText) {
-        return episodes;
+      if (value === defaultOption.innerText) {
+        return true;
+      } else {
+        return episode.name.includes(value) || episode.summary.includes(value);
       }
     });
     makePageForEpisodes(filteredEpisode);
   });
 }
-// Adding level 350
 
-window.onload = setup;
+//
+
+window.onload = Setup;
