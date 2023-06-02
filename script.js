@@ -1,11 +1,14 @@
 // const rootElem = document.getElementById("root");
 const divContainer = document.getElementById("tvEpisode");
 
+
+
 async function Setup() {
   const allEpisodes = await fetchEpisodes();
   makePageForEpisodes(allEpisodes);
   searchEpisode(allEpisodes);
   selectEpisode(allEpisodes);
+
 }
 
 async function fetchEpisodes() {
@@ -15,7 +18,7 @@ async function fetchEpisodes() {
       Accept: "application/json",
     },
   });
-
+  
   if (response.ok) {
     const json = await response.json();
     return json;
@@ -23,6 +26,9 @@ async function fetchEpisodes() {
     throw new Error("Failed to fetch episodes");
   }
 }
+
+
+
 
 function makePageForEpisodes(episodeList) {
   divContainer.textContent = ""; // Clear previous episodes
@@ -57,7 +63,7 @@ function searchEpisode(episodes) {
 function selectEpisode(episodes) {
   const select = document.getElementById("select");
   select.innerHTML = ""; // Clear previous options
-
+  
   const defaultOption = document.createElement("option");
   defaultOption.innerText = "Select an episode";
   select.appendChild(defaultOption);
@@ -79,13 +85,16 @@ function selectEpisode(episodes) {
       if (value === defaultOption.innerText) {
         return true;
       } else {
-        return episode.name.includes(value) || episode.summary.includes(value);
+        return (
+          episode.name.includes(value) || episode.summary.includes(value)
+        );
       }
     });
     makePageForEpisodes(filteredEpisode);
+    
   });
 }
 
-//
+// 
 
 window.onload = Setup;

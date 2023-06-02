@@ -1,32 +1,105 @@
 #root {
   color: red;
 }
-body{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* background-color: #000000; */
-  /* color: aliceblue; */
-}
 
-#tvEpisode{
+#tvEpisode {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-#tvEpisode{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
+.episodeCard > h2 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.episodeCard > h2{
-font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-}
-.hide{
+.hide {
   display: none;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+label,
+input,
+select {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 30%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.select-container {
+  margin-top: 20px;
+}
+
+select {
+  width: 32%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.episodeCard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.episodeCard img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.episodeCard span {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 600px) {
+  #tvEpisode {
+    grid-template-columns: 1fr;
+  }
 }
