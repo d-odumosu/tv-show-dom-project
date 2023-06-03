@@ -6,14 +6,15 @@
     <title>TV Show Project | My Name (d-odumosu)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <script defer src="shows.js"></script>
     <script defer src="episodes.js"></script>
-    <script defer src="script.js"></script>
     <script defer src="script.js"></script>
   </head>
 
   <body>
     <div id="root"></div>
     <div id="inputContainer">
+
       <form action="">
         <label for="searchInput">Search episodes</label>
         <input type="text" name="" id="searchInput" placeholder="Search..." />
@@ -24,13 +25,17 @@
         <label for="select">Select episode</label>
         <select name="" id="select"></select>
         </form>
+
+        <form action="">
+          <label for="select">Select a Show</label>
+        <select name="" id="selectShow"></select>
+        </form>
       </div>
     </div>
 
     <div id="tvEpisode"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <script src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
   </body>
